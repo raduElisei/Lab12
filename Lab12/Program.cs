@@ -16,5 +16,32 @@ internal class Program
             .ConvertToUppercase();
 
         transformer.PrintString();
+
+        List<int> list = new List<int>();
+
+        Console.WriteLine("Da numere de la tastatura:");
+
+        Console.WriteLine(list.Count);
+
+        for (int i = 0; i < 5; i++)
+        {
+            var readNumber = Console.ReadLine();
+            if (readNumber == "")
+            {
+                continue;
+            }
+            list.Add(Convert.ToInt32(readNumber));
+        }
+
+        Console.WriteLine(list.Count);
+
+        if (list.Count <= 0)
+        {
+            LogHelper.Log(LogTarget.Console, LogCriticality.Warning, $"List {nameof(list)} length is less than or equal to 0");
+        }
+        if (list.Any(number => number < 0))
+        {
+            LogHelper.Log(LogTarget.File, LogCriticality.Critical, $"There are negative elements in list {nameof(list)}");
+        }
     }
 }
